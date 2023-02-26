@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface CommissionRepository extends JpaRepository<Commission,Long> {
 
-    Optional<Commission> findCommissionByResellerAndAndProduct(Reseller reseller, Product product);
+    Optional<Commission> findCommissionByResellerAndProduct(Reseller reseller, Product product);
 }

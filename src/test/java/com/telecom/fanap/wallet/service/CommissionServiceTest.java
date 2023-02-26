@@ -12,8 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
-import static com.telecom.fanap.wallet.MotherObject.*;
-import static org.mockito.ArgumentMatchers.*;
+import static com.telecom.fanap.wallet.MotherObject.createAnyCommission;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -29,7 +29,7 @@ class CommissionServiceTest {
     void given_commission_when_create_commission_then_must_return_id() throws ServiceException {
         Commission anyCommission = createAnyCommission();
 
-        when(commissionRepository.findCommissionByResellerAndAndProduct(any(), any()))
+        when(commissionRepository.findCommissionByResellerAndProduct(any(), any()))
                 .thenReturn(Optional.empty());
         when(commissionRepository.save(any())).thenReturn(anyCommission);
 
@@ -42,7 +42,7 @@ class CommissionServiceTest {
     void given_commission_when_createCommission_and_is_repetitive_then_must_throws_exception() {
         Commission anyCommission = createAnyCommission();
 
-        when(commissionRepository.findCommissionByResellerAndAndProduct(any(), any()))
+        when(commissionRepository.findCommissionByResellerAndProduct(any(), any()))
                 .thenReturn(Optional.of(anyCommission));
 
         Assertions.assertThrows(ServiceException.class, () -> commissionService.createCommission(anyCommission));

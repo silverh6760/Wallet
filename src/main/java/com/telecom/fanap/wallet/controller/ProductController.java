@@ -2,7 +2,6 @@ package com.telecom.fanap.wallet.controller;
 
 import com.telecom.fanap.wallet.models.entity.Product;
 import com.telecom.fanap.wallet.service.ProductService;
-import com.telecom.fanap.wallet.service.ProductServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

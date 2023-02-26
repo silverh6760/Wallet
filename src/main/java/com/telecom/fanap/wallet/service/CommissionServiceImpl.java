@@ -16,7 +16,7 @@ public class CommissionServiceImpl implements CommissionService{
     private CommissionRepository commissionRepository;
 
     public long createCommission(Commission commission) throws ServiceException {
-        Optional<Commission> commissionFromDB = commissionRepository.findCommissionByResellerAndAndProduct(commission.getReseller(),
+        Optional<Commission> commissionFromDB = commissionRepository.findCommissionByResellerAndProduct(commission.getReseller(),
                 commission.getProduct());
         if (commissionFromDB.isPresent()) {
             throw new ServiceException(ExceptionMessage.RECORD_IS_REPETITIVE,

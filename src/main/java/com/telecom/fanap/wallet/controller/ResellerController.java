@@ -3,7 +3,6 @@ package com.telecom.fanap.wallet.controller;
 import com.telecom.fanap.wallet.exception.ServiceException;
 import com.telecom.fanap.wallet.models.entity.Reseller;
 import com.telecom.fanap.wallet.service.ResellerService;
-import com.telecom.fanap.wallet.service.ResellerServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

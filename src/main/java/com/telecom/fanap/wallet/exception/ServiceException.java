@@ -1,5 +1,8 @@
 package com.telecom.fanap.wallet.exception;
 
+import lombok.Data;
+
+@Data
 public class ServiceException extends Exception {
     private Object[] args = new Object[0];
     private String message;
