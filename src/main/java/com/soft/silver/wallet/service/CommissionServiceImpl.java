@@ -5,8 +5,10 @@ import com.soft.silver.wallet.exception.ServiceException;
 import com.soft.silver.wallet.models.entity.Commission;
 import com.soft.silver.wallet.repository.CommissionRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,5 +25,33 @@ public class CommissionServiceImpl implements CommissionService{
                     new Object[]{commission.getReseller(), commission.getProduct()});
         }
         return commissionRepository.save(commission).getId();
+    }
+
+    public List<Commission> getAllCommissions(Integer pageSize, Integer pageNumber) {
+        Pageable pageable = Pageable.ofSize(pageSize).withPage(pageNumber);
+        return commissionRepository.findAll(pageable).stream().toList();
+    }
+
+
+    public Commission findCommissionById(long id) throws ServiceException {
+        Optional<Commission> byId = commissionRepository.findById(id);
+        return byId.orElseThrow(() ->
+                new ServiceException(ExceptionMessage.RECORD_NOT_FOUND, new Object[]{id}));
+    }
+
+
+    public long updateCommission(Commission commission, long id) throws ServiceException {
+        Commission commissionById = findCommissionById(id);
+        commission.setId(commissionById.getId());
+        return createCommission(commission);
+    }
+
+
+    public void deleteCommissionById(long id) {
+        commissionRepository.deleteById(id);
+    }
+
+    public void deleteAllCommissions() {
+        commissionRepository.deleteAll();
     }
 }
